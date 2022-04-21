@@ -2,11 +2,15 @@ using System;
 
 namespace LittleBit.Modules.SequenceLogicModule
 {
-    public abstract class UnitLogic
+    public abstract class UnitLogic : IDisposable
     {
         public event Action <bool> OnChangeAvailable;
 
-        public abstract void Dispose();
+
+        public virtual void Dispose()
+        {
+            ClearListeners();
+        }
         
         private bool _isAvailable = false;
         
@@ -20,7 +24,7 @@ namespace LittleBit.Modules.SequenceLogicModule
             }
         }
         
-        protected void ClearListeners()
+        private void ClearListeners()
         {
             Listeners.ClearListeners<bool>(OnChangeAvailable);
         }

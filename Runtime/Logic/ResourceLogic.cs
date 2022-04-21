@@ -1,9 +1,8 @@
-﻿using System;
-using LittleBit.Modules.CoreModule;
+﻿using LittleBit.Modules.CoreModule;
 
 namespace LittleBit.Modules.SequenceLogicModule
 {
-    public class ResourceLogic : UnitLogic, IDisposable
+    public class ResourceLogic : UnitLogic
     {
         private readonly IDataStorageService _dataStorageService;
         private readonly double _value;
@@ -19,8 +18,8 @@ namespace LittleBit.Modules.SequenceLogicModule
         
         public override void Dispose()
         {
+            base.Dispose();
             _dataStorageService.RemoveAllUpdateDataListenersOnObject(this);
-            ClearListeners();
         }
         
         private void CheckCondition(Resource resource)

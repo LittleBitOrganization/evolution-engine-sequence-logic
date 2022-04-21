@@ -55,14 +55,13 @@ namespace LittleBit.Modules.SequenceLogicModule
 
         public override void Dispose()
         {
+            base.Dispose();
             foreach (var unit in _unitComponents)
             {
                 Unsubscribe(unit);
                 unit.Dispose();
             }
-
             _unitComponents.Clear();
-            ClearListeners();
         }
     }
 }
